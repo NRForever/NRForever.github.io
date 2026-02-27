@@ -1,127 +1,212 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nader ❤️ Rahma</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nader ❤️ Rahma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
-<style>
-body{font-family:'Cairo',sans-serif;}
-.fade-up{opacity:0;transform:translateY(30px);animation:fadeUp 1.2s ease forwards;}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(14px);}
-.parallax{background-attachment:fixed;}
-</style>
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        
+        /* Smooth staggered fade-in animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Background image fix */
+        .bg-fixed-cover {
+            background-image: url('IMG_8223.jpg'); /* Ensure case matches exactly on Git! */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Mobile fallback for fixed backgrounds */
+        @media (max-width: 768px) {
+            .bg-fixed-cover { background-attachment: scroll; }
+        }
+
+        /* Floating Hearts Animation */
+        .hearts-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            bottom: -10%;
+            color: rgba(255, 100, 130, 0.4);
+            font-size: 24px;
+            animation: float 6s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-120vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
 
-<body class="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden">
+<body class="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden bg-gray-900">
 
-<!-- Background -->
-<div class="absolute inset-0 bg-cover bg-center parallax"
-style="background-image:url('./IMG_8223.jpg')"></div>
+    <div class="absolute inset-0 bg-fixed-cover"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
 
-<div class="absolute inset-0 bg-black/70"></div>
+    <div class="hearts-container" id="hearts"></div>
 
-<div class="relative z-10 w-full max-w-5xl px-6 py-14 fade-up">
+    <div class="relative z-10 w-full max-w-4xl px-6 py-16 flex flex-col items-center">
 
-<h1 class="text-4xl md:text-6xl font-bold text-center mb-6 tracking-wide">
-نادر ❤️ رحمة
-</h1>
+        <div class="text-center fade-up delay-1 mb-12">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-rose-400 to-rose-200 drop-shadow-lg">
+                نادر ❤️ رحمة
+            </h1>
+            <p class="text-rose-300/90 text-lg md:text-xl font-bold tracking-wide">
+                منذ 30 أكتوبر 2025 - الساعة 8:00 مساءً
+            </p>
+        </div>
 
-<p class="text-center text-rose-300 mb-12 text-lg">
-منذ 30 أكتوبر 2025 - الساعة 8:00 مساءً
-</p>
+        <div class="glass rounded-3xl p-6 md:p-10 w-full fade-up delay-2 mb-16 transition-transform duration-500 hover:scale-[1.02]">
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <div id="years" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
+                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">سنة</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="months" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
+                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">شهر</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="days" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
+                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">يوم</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="hours" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
+                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">ساعة</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="minutes" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
+                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">دقيقة</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="seconds" class="text-4xl md:text-5xl font-bold text-rose-400 animate-pulse">0</div>
+                    <span class="text-rose-400/80 mt-2 text-sm md:text-base font-bold">ثانية</span>
+                </div>
+            </div>
+        </div>
 
-<!-- Counter -->
-<div class="glass rounded-3xl p-8 shadow-2xl mb-16">
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-center">
+        <div class="w-full max-w-2xl fade-up delay-3">
+            <h2 class="text-2xl font-bold text-center mb-8 text-rose-200">محطات رحلتنا</h2>
+            
+            <div class="relative border-r-2 border-rose-500/50 pr-8 space-y-10 rtl:border-l-0">
+                
+                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
+                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-black border-4 border-rose-500 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.6)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="glass p-5 rounded-2xl">
+                        <h3 class="font-bold text-xl text-rose-200 mb-1">أول لقاء</h3>
+                        <p class="text-gray-300 text-sm">30 أكتوبر 2025</p>
+                    </div>
+                </div>
 
-<div>
-<div id="years" class="text-3xl md:text-4xl font-bold">0</div>
-<span class="text-gray-300 text-sm">سنة</span>
-</div>
+                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
+                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-black border-4 border-rose-500 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.6)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="glass p-5 rounded-2xl">
+                        <h3 class="font-bold text-xl text-rose-200 mb-1">قراءة الفاتحة</h3>
+                        <p class="text-gray-300 text-sm">9 نوفمبر 2025</p>
+                    </div>
+                </div>
 
-<div>
-<div id="months" class="text-3xl md:text-4xl font-bold">0</div>
-<span class="text-gray-300 text-sm">شهر</span>
-</div>
+                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
+                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-rose-500 border-4 border-rose-300 rounded-full shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="glass p-5 rounded-2xl border border-rose-500/30">
+                        <h3 class="font-bold text-xl text-rose-100 mb-1">الخطوبة</h3>
+                        <p class="text-rose-200/80 text-sm">13 نوفمبر 2025</p>
+                    </div>
+                </div>
 
-<div>
-<div id="days" class="text-3xl md:text-4xl font-bold">0</div>
-<span class="text-gray-300 text-sm">يوم</span>
-</div>
+            </div>
+        </div>
 
-<div>
-<div id="hours" class="text-3xl md:text-4xl font-bold">0</div>
-<span class="text-gray-300 text-sm">ساعة</span>
-</div>
+    </div>
 
-<div>
-<div id="seconds" class="text-3xl md:text-4xl font-bold">0</div>
-<span class="text-gray-300 text-sm">ثانية</span>
-</div>
+    <script>
+        // Generate Floating Hearts
+        const heartsContainer = document.getElementById('hearts');
+        const heartSymbols = ['❤️', '✨', '💖', '🤍'];
+        
+        for(let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; // 4 to 7 seconds
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+        }
 
-</div>
-</div>
+        // Precise Countdown Logic
+        const startDate = new Date(2025, 9, 30, 20, 0, 0); // Oct 30, 2025, 8:00 PM
 
-<!-- Timeline -->
-<div class="relative border-r border-rose-500 pr-8 space-y-12">
+        function update() {
+            const now = new Date();
+            let diff = now - startDate;
 
-<div class="relative group">
-<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
-<h3 class="font-bold text-xl">أول لقاء</h3>
-<p class="text-gray-300">30 أكتوبر 2025</p>
-</div>
+            if (diff < 0) diff = 0; // Prevent negative numbers if viewing before the date
 
-<div class="relative group">
-<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
-<h3 class="font-bold text-xl">قراءة الفاتحة</h3>
-<p class="text-gray-300">9 نوفمبر 2025</p>
-</div>
+            // Convert milliseconds into respective units
+            let seconds = Math.floor((diff / 1000) % 60);
+            let minutes = Math.floor((diff / 1000 / 60) % 60);
+            let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            
+            // For precise days/months/years, we use Date objects
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
 
-<div class="relative group">
-<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
-<h3 class="font-bold text-xl">الخطوبة</h3>
-<p class="text-gray-300">13 نوفمبر 2025</p>
-</div>
+            if (days < 0) {
+                const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonthDays;
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
 
-</div>
+            // Animate only numbers that change (optional polish, currently just updating text)
+            document.getElementById("years").textContent = years;
+            document.getElementById("months").textContent = months;
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
 
-</div>
-
-<script>
-const startDate=new Date(2025,9,30,20,0,0);
-
-function update(){
-const now=new Date();
-
-let years=now.getFullYear()-startDate.getFullYear();
-let months=now.getMonth()-startDate.getMonth();
-let days=now.getDate()-startDate.getDate();
-let hours=now.getHours()-startDate.getHours();
-let seconds=now.getSeconds()-startDate.getSeconds();
-
-if(seconds<0){seconds+=60;hours--;}
-if(hours<0){hours+=24;days--;}
-if(days<0){
-const prevMonthDays=new Date(now.getFullYear(),now.getMonth(),0).getDate();
-days+=prevMonthDays;
-months--;
-}
-if(months<0){months+=12;years--;}
-
-document.getElementById("years").textContent=years;
-document.getElementById("months").textContent=months;
-document.getElementById("days").textContent=days;
-document.getElementById("hours").textContent=hours;
-document.getElementById("seconds").textContent=seconds;
-}
-
-setInterval(update,1000);
-update();
-</script>
-
+        setInterval(update, 1000);
+        update();
+    </script>
 </body>
 </html>
