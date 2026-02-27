@@ -194,13 +194,7 @@
     <script>
         // --- 1. Background Slideshow Logic ---
         // قم بتعديل هذه المصفوفة بأسماء الصور الخاصة بك
-        const images = [
-            'IMG_8223.jpg', 
-            'IMG_3883.jpg', // استبدل هذه بمسار صورتك الثانية
-            'IMG_3837.jpg', // استبدل هذه بمسار صورتك الثالثة
-            'IMG_3924.jpg', 
-            'IMG_3834.jpg'
-        ];
+        const images = Array.from({ length: 28 }, (_, i) => `${i + 1}.jpg`);
         
         const slideContainer = document.getElementById('slideshow-container');
         let currentSlide = 0;
