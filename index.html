@@ -8,75 +8,120 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Cairo', sans-serif; }
-    .fade-in { animation: fadeIn 2s ease-in-out; }
-    @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-    .float { animation: float 4s ease-in-out infinite; }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+    .fade-in { animation: fadeIn 1.5s ease forwards; opacity:0; }
+    @keyframes fadeIn { to { opacity:1; transform:none } }
   </style>
 </head>
 
-<body class="bg-gradient-to-br from-pink-100 via-rose-200 to-pink-300 min-h-screen flex items-center justify-center">
+<body class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-  <div class="bg-white/80 backdrop-blur-lg shadow-2xl rounded-3xl p-10 max-w-2xl w-full text-center fade-in">
+  <!-- ضع رابط صورتكم هنا -->
+  <div class="absolute inset-0 bg-cover bg-center" 
+       style="background-image: url('images/1.jpg');"></div>
 
-    <h1 class="text-4xl md:text-5xl font-bold text-rose-600 mb-6 float">
+  <!-- طبقة تغميق -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+  <div class="relative z-10 bg-white/10 border border-white/20 backdrop-blur-xl rounded-3xl p-10 max-w-4xl w-full text-white shadow-2xl fade-in">
+
+    <h1 class="text-4xl md:text-5xl font-bold text-center mb-6">
       نادر ❤️ رحمة
     </h1>
 
-    <p class="text-gray-700 text-lg mb-8">
-      منذ أول مرة شفتك – 30/10/2025 الساعة 8:00 مساءً
+    <p class="text-center text-lg text-rose-200 mb-10">
+      منذ 30/10/2025 – الساعة 8:00 مساءً
     </p>
 
-    <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mb-10">
+    <!-- العداد -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center mb-14">
       <div>
-        <div id="years" class="text-3xl font-bold text-rose-600">0</div>
-        <div class="text-gray-600">سنين</div>
+        <div id="years" class="text-3xl font-bold">0</div>
+        <div class="text-sm text-gray-200">سنة</div>
       </div>
       <div>
-        <div id="days" class="text-3xl font-bold text-rose-600">0</div>
-        <div class="text-gray-600">أيام</div>
+        <div id="months" class="text-3xl font-bold">0</div>
+        <div class="text-sm text-gray-200">شهر</div>
       </div>
       <div>
-        <div id="hours" class="text-3xl font-bold text-rose-600">0</div>
-        <div class="text-gray-600">ساعات</div>
+        <div id="days" class="text-3xl font-bold">0</div>
+        <div class="text-sm text-gray-200">يوم</div>
       </div>
       <div>
-        <div id="seconds" class="text-3xl font-bold text-rose-600">0</div>
-        <div class="text-gray-600">ثواني</div>
+        <div id="hours" class="text-3xl font-bold">0</div>
+        <div class="text-sm text-gray-200">ساعة</div>
+      </div>
+      <div>
+        <div id="seconds" class="text-3xl font-bold">0</div>
+        <div class="text-sm text-gray-200">ثانية</div>
       </div>
     </div>
 
-    <div class="space-y-4 text-gray-700">
-      <p>✨ أول يوم أشوف رحمة: 30/10/2025</p>
-      <p>📖 يوم قراءة الفاتحة: 9/11/2025</p>
-      <p>💍 يوم الخطوبة: 13/11/2025</p>
+    <!-- التايم لاين -->
+    <div class="relative border-r-2 border-rose-400 pr-6 space-y-8">
+
+      <div class="relative">
+        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
+        <h3 class="font-bold text-lg">أول مرة أشوف رحمة</h3>
+        <p class="text-gray-300">30 أكتوبر 2025</p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
+        <h3 class="font-bold text-lg">قراءة الفاتحة</h3>
+        <p class="text-gray-300">9 نوفمبر 2025</p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
+        <h3 class="font-bold text-lg">الخطوبة</h3>
+        <p class="text-gray-300">13 نوفمبر 2025</p>
+      </div>
+
     </div>
 
   </div>
 
 <script>
-  const startDate = new Date("2025-10-30T20:00:00");
+  const startDate = new Date(2025, 9, 30, 20, 0, 0); // 30 Oct 2025 8PM
 
-  function updateCounter() {
+  function calculateDiff() {
     const now = new Date();
-    const diff = now - startDate;
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let seconds = now.getSeconds() - startDate.getSeconds();
 
-    if (diff < 0) return;
+    if (seconds < 0) {
+      seconds += 60;
+      hours--;
+    }
 
-    const secondsTotal = Math.floor(diff / 1000);
-    const years = Math.floor(secondsTotal / (365.25 * 24 * 3600));
-    const days = Math.floor((secondsTotal % (365.25 * 24 * 3600)) / (24 * 3600));
-    const hours = Math.floor((secondsTotal % (24 * 3600)) / 3600);
-    const seconds = secondsTotal % 60;
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+
+    if (days < 0) {
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonth;
+      months--;
+    }
+
+    if (months < 0) {
+      months += 12;
+      years--;
+    }
 
     document.getElementById("years").textContent = years;
+    document.getElementById("months").textContent = months;
     document.getElementById("days").textContent = days;
     document.getElementById("hours").textContent = hours;
     document.getElementById("seconds").textContent = seconds;
   }
 
-  setInterval(updateCounter, 1000);
-  updateCounter();
+  setInterval(calculateDiff, 1000);
+  calculateDiff();
 </script>
 
 </body>
