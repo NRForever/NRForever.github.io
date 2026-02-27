@@ -1,127 +1,126 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nader ❤️ Rahma</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Cairo', sans-serif; }
-    .fade-in { animation: fadeIn 1.5s ease forwards; opacity:0; }
-    @keyframes fadeIn { to { opacity:1; transform:none } }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nader ❤️ Rahma</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{font-family:'Cairo',sans-serif;}
+.fade-up{opacity:0;transform:translateY(30px);animation:fadeUp 1.2s ease forwards;}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(14px);}
+.parallax{background-attachment:fixed;}
+</style>
 </head>
 
-<body class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<body class="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden">
 
-  <!-- ضع رابط صورتكم هنا -->
-  <div class="absolute inset-0 bg-cover bg-center" 
-       style="background-image: url('IMG_8223.jpg');"></div>
+<!-- Background -->
+<div class="absolute inset-0 bg-cover bg-center parallax"
+style="background-image:url('./IMG_8223.jpg')"></div>
 
-  <!-- طبقة تغميق -->
-  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+<div class="absolute inset-0 bg-black/70"></div>
 
-  <div class="relative z-10 bg-white/10 border border-white/20 backdrop-blur-xl rounded-3xl p-10 max-w-4xl w-full text-white shadow-2xl fade-in">
+<div class="relative z-10 w-full max-w-5xl px-6 py-14 fade-up">
 
-    <h1 class="text-4xl md:text-5xl font-bold text-center mb-6">
-      نادر ❤️ رحمة
-    </h1>
+<h1 class="text-4xl md:text-6xl font-bold text-center mb-6 tracking-wide">
+نادر ❤️ رحمة
+</h1>
 
-    <p class="text-center text-lg text-rose-200 mb-10">
-      منذ 30/10/2025 – الساعة 8:00 مساءً
-    </p>
+<p class="text-center text-rose-300 mb-12 text-lg">
+منذ 30 أكتوبر 2025 - الساعة 8:00 مساءً
+</p>
 
-    <!-- العداد -->
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center mb-14">
-      <div>
-        <div id="years" class="text-3xl font-bold">0</div>
-        <div class="text-sm text-gray-200">سنة</div>
-      </div>
-      <div>
-        <div id="months" class="text-3xl font-bold">0</div>
-        <div class="text-sm text-gray-200">شهر</div>
-      </div>
-      <div>
-        <div id="days" class="text-3xl font-bold">0</div>
-        <div class="text-sm text-gray-200">يوم</div>
-      </div>
-      <div>
-        <div id="hours" class="text-3xl font-bold">0</div>
-        <div class="text-sm text-gray-200">ساعة</div>
-      </div>
-      <div>
-        <div id="seconds" class="text-3xl font-bold">0</div>
-        <div class="text-sm text-gray-200">ثانية</div>
-      </div>
-    </div>
+<!-- Counter -->
+<div class="glass rounded-3xl p-8 shadow-2xl mb-16">
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-center">
 
-    <!-- التايم لاين -->
-    <div class="relative border-r-2 border-rose-400 pr-6 space-y-8">
+<div>
+<div id="years" class="text-3xl md:text-4xl font-bold">0</div>
+<span class="text-gray-300 text-sm">سنة</span>
+</div>
 
-      <div class="relative">
-        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
-        <h3 class="font-bold text-lg">أول مرة أشوف رحمة</h3>
-        <p class="text-gray-300">30 أكتوبر 2025</p>
-      </div>
+<div>
+<div id="months" class="text-3xl md:text-4xl font-bold">0</div>
+<span class="text-gray-300 text-sm">شهر</span>
+</div>
 
-      <div class="relative">
-        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
-        <h3 class="font-bold text-lg">قراءة الفاتحة</h3>
-        <p class="text-gray-300">9 نوفمبر 2025</p>
-      </div>
+<div>
+<div id="days" class="text-3xl md:text-4xl font-bold">0</div>
+<span class="text-gray-300 text-sm">يوم</span>
+</div>
 
-      <div class="relative">
-        <div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full"></div>
-        <h3 class="font-bold text-lg">الخطوبة</h3>
-        <p class="text-gray-300">13 نوفمبر 2025</p>
-      </div>
+<div>
+<div id="hours" class="text-3xl md:text-4xl font-bold">0</div>
+<span class="text-gray-300 text-sm">ساعة</span>
+</div>
 
-    </div>
+<div>
+<div id="seconds" class="text-3xl md:text-4xl font-bold">0</div>
+<span class="text-gray-300 text-sm">ثانية</span>
+</div>
 
-  </div>
+</div>
+</div>
+
+<!-- Timeline -->
+<div class="relative border-r border-rose-500 pr-8 space-y-12">
+
+<div class="relative group">
+<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
+<h3 class="font-bold text-xl">أول لقاء</h3>
+<p class="text-gray-300">30 أكتوبر 2025</p>
+</div>
+
+<div class="relative group">
+<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
+<h3 class="font-bold text-xl">قراءة الفاتحة</h3>
+<p class="text-gray-300">9 نوفمبر 2025</p>
+</div>
+
+<div class="relative group">
+<div class="absolute -right-[9px] top-1 w-4 h-4 bg-rose-500 rounded-full group-hover:scale-125 transition"></div>
+<h3 class="font-bold text-xl">الخطوبة</h3>
+<p class="text-gray-300">13 نوفمبر 2025</p>
+</div>
+
+</div>
+
+</div>
 
 <script>
-  const startDate = new Date(2025, 9, 30, 20, 0, 0); // 30 Oct 2025 8PM
+const startDate=new Date(2025,9,30,20,0,0);
 
-  function calculateDiff() {
-    const now = new Date();
-    let years = now.getFullYear() - startDate.getFullYear();
-    let months = now.getMonth() - startDate.getMonth();
-    let days = now.getDate() - startDate.getDate();
-    let hours = now.getHours() - startDate.getHours();
-    let seconds = now.getSeconds() - startDate.getSeconds();
+function update(){
+const now=new Date();
 
-    if (seconds < 0) {
-      seconds += 60;
-      hours--;
-    }
+let years=now.getFullYear()-startDate.getFullYear();
+let months=now.getMonth()-startDate.getMonth();
+let days=now.getDate()-startDate.getDate();
+let hours=now.getHours()-startDate.getHours();
+let seconds=now.getSeconds()-startDate.getSeconds();
 
-    if (hours < 0) {
-      hours += 24;
-      days--;
-    }
+if(seconds<0){seconds+=60;hours--;}
+if(hours<0){hours+=24;days--;}
+if(days<0){
+const prevMonthDays=new Date(now.getFullYear(),now.getMonth(),0).getDate();
+days+=prevMonthDays;
+months--;
+}
+if(months<0){months+=12;years--;}
 
-    if (days < 0) {
-      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      days += prevMonth;
-      months--;
-    }
+document.getElementById("years").textContent=years;
+document.getElementById("months").textContent=months;
+document.getElementById("days").textContent=days;
+document.getElementById("hours").textContent=hours;
+document.getElementById("seconds").textContent=seconds;
+}
 
-    if (months < 0) {
-      months += 12;
-      years--;
-    }
-
-    document.getElementById("years").textContent = years;
-    document.getElementById("months").textContent = months;
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("seconds").textContent = seconds;
-  }
-
-  setInterval(calculateDiff, 1000);
-  calculateDiff();
+setInterval(update,1000);
+update();
 </script>
 
 </body>
