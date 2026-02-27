@@ -1,3 +1,11 @@
+ممتاز أن الصورة الخلفية تعمل الآن! لقد قمت بتحديث الكود بناءً على طلباتك الجديدة:
+التعديلات الجديدة:
+ * لوحة الألوان (Color Palette): تم التخلص من أي درجات قد تبدو برتقالية. الاعتماد الآن كلياً على درجات الوردي الغني (Rose) والزهري الفاتح (Pink) والأحمر الهادئ، ليعطي إحساساً رومانسياً أعمق.
+ * تايم لاين احترافي (Professional Timeline):
+   * إعادة تصميم جذري: بدلاً من الخط البسيط والنقاط، أصبح التايم لاين الآن يتميز بخط متدرج (Gradient Line) أنيق.
+   * أيقونات معبرة: تم استبدال النقاط بأيقونات كبيرة داخل دوائر متدرجة الألوان (قلب، خاتم، دبل)، مما يعطي طابعاً احترافياً وفاخراً.
+   * بطاقات زجاجية محسنة: تم تحسين تصميم البطاقات (Glassmorphism) لتكون أكثر نعومة، مع إضافة تأثير توهج وردي خفيف عند تمرير الماوس عليها.
+إليك الكود المحدث بالكامل:
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,190 +13,241 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nader ❤️ Rahma</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Cairo', sans-serif; }
         
-        /* Smooth staggered fade-in animations */
+        /* Animations */
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
+        /* Staggered Delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-700 { animation-delay: 0.7s; }
 
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Enhanced Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        /* Enhanced Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 192, 203, 0.08); /* Subtle pink tint */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        /* Timeline specific styles */
+        .timeline-icon-container {
+            background: linear-gradient(135deg, #ec4899, #e11d48); /* Pink to Rose gradient */
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
         }
 
-        /* Background image fix */
+        /* Background Fixes */
         .bg-fixed-cover {
-            background-image: url('IMG_8223.jpg'); /* Ensure case matches exactly on Git! */
+            background-image: url('IMG_8223.jpg'); /* تأكد من تطابق اسم الملف تماماً */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        
-        /* Mobile fallback for fixed backgrounds */
         @media (max-width: 768px) {
             .bg-fixed-cover { background-attachment: scroll; }
         }
 
         /* Floating Hearts Animation */
-        .hearts-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
+        .hearts-bg-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
         }
-        .heart {
-            position: absolute;
-            bottom: -10%;
-            color: rgba(255, 100, 130, 0.4);
+        .floating-heart {
+            position: absolute; bottom: -10%;
+            color: rgba(255, 150, 170, 0.5); /* More pinkish */
             font-size: 24px;
-            animation: float 6s linear infinite;
+            animation: floatUp linear infinite;
         }
-        @keyframes float {
-            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-120vh) scale(1.5) rotate(360deg); opacity: 0; }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-120vh) scale(1.2) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 
-<body class="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden bg-gray-900">
+<body class="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden bg-gray-950">
 
-    <div class="absolute inset-0 bg-fixed-cover"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
+    <div class="absolute inset-0 bg-fixed-cover z-[-2]"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/80 to-pink-950/60 z-[-1]"></div>
+    
+    <div class="hearts-bg-container" id="hearts-canvas"></div>
 
-    <div class="hearts-container" id="hearts"></div>
+    <div class="relative z-10 w-full max-w-4xl px-4 md:px-8 py-20 flex flex-col items-center">
 
-    <div class="relative z-10 w-full max-w-4xl px-6 py-16 flex flex-col items-center">
-
-        <div class="text-center fade-up delay-1 mb-12">
-            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-rose-400 to-rose-200 drop-shadow-lg">
+        <div class="text-center fade-up delay-100 mb-14">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-rose-400 to-pink-300 drop-shadow-[0_2px_10px_rgba(236,72,153,0.5)]">
                 نادر ❤️ رحمة
             </h1>
-            <p class="text-rose-300/90 text-lg md:text-xl font-bold tracking-wide">
-                منذ 30 أكتوبر 2025 - الساعة 8:00 مساءً
+            <p class="text-pink-200/90 text-lg md:text-2xl font-semibold tracking-wide">
+                بداية رحلتنا الأبدية
+                <br>
+                <span class="text-sm md:text-base opacity-80">منذ 30 أكتوبر 2025 - 8:00 مساءً</span>
             </p>
         </div>
 
-        <div class="glass rounded-3xl p-6 md:p-10 w-full fade-up delay-2 mb-16 transition-transform duration-500 hover:scale-[1.02]">
-            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6 text-center">
+        <div class="glass-card rounded-[2rem] p-6 md:p-10 w-full fade-up delay-200 mb-20 hover:scale-[1.01] transition-transform duration-500">
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-y-6 gap-x-4 text-center">
                 <div class="flex flex-col items-center">
-                    <div id="years" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
-                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">سنة</span>
+                    <div id="years" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md font-[Cairo]">0</div>
+                    <span class="text-pink-300/80 mt-2 text-sm md:text-base font-bold">سنة</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div id="months" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
-                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">شهر</span>
+                    <div id="months" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md font-[Cairo]">0</div>
+                    <span class="text-pink-300/80 mt-2 text-sm md:text-base font-bold">شهر</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div id="days" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
-                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">يوم</span>
+                    <div id="days" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md font-[Cairo]">0</div>
+                    <span class="text-pink-300/80 mt-2 text-sm md:text-base font-bold">يوم</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div id="hours" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
-                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">ساعة</span>
+                    <div id="hours" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md font-[Cairo]">0</div>
+                    <span class="text-pink-300/80 mt-2 text-sm md:text-base font-bold">ساعة</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div id="minutes" class="text-4xl md:text-5xl font-bold text-rose-100">0</div>
-                    <span class="text-gray-400 mt-2 text-sm md:text-base font-bold">دقيقة</span>
+                    <div id="minutes" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md font-[Cairo]">0</div>
+                    <span class="text-pink-300/80 mt-2 text-sm md:text-base font-bold">دقيقة</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div id="seconds" class="text-4xl md:text-5xl font-bold text-rose-400 animate-pulse">0</div>
+                 <div class="flex flex-col items-center relative">
+                    <div id="seconds" class="text-4xl md:text-5xl font-extrabold text-rose-400 drop-shadow-md font-[Cairo]">0</div>
                     <span class="text-rose-400/80 mt-2 text-sm md:text-base font-bold">ثانية</span>
+                     <div class="absolute inset-0 bg-rose-500/20 blur-xl rounded-full animate-pulse z-[-1]"></div>
                 </div>
             </div>
         </div>
 
-        <div class="w-full max-w-2xl fade-up delay-3">
-            <h2 class="text-2xl font-bold text-center mb-8 text-rose-200">محطات رحلتنا</h2>
+        <div class="w-full max-w-3xl fade-up delay-300 relative">
+             <div class="flex items-center justify-center mb-12 opacity-90">
+                <div class="h-px bg-gradient-to-r from-transparent to-pink-400 flex-grow max-w-[100px]"></div>
+                <h2 class="text-3xl font-bold text-center mx-4 text-pink-200 drop-shadow">محطات حبنا</h2>
+                <div class="h-px bg-gradient-to-l from-transparent to-pink-400 flex-grow max-w-[100px]"></div>
+            </div>
             
-            <div class="relative border-r-2 border-rose-500/50 pr-8 space-y-10 rtl:border-l-0">
-                
-                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
-                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-black border-4 border-rose-500 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.6)] group-hover:scale-125 transition-transform duration-300"></div>
-                    <div class="glass p-5 rounded-2xl">
-                        <h3 class="font-bold text-xl text-rose-200 mb-1">أول لقاء</h3>
-                        <p class="text-gray-300 text-sm">30 أكتوبر 2025</p>
-                    </div>
-                </div>
+            <div class="relative py-4">
+                 <div class="absolute right-8 md:right-10 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-400 via-rose-600 to-pink-900 rounded-full opacity-80"></div>
 
-                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
-                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-black border-4 border-rose-500 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.6)] group-hover:scale-125 transition-transform duration-300"></div>
-                    <div class="glass p-5 rounded-2xl">
-                        <h3 class="font-bold text-xl text-rose-200 mb-1">قراءة الفاتحة</h3>
-                        <p class="text-gray-300 text-sm">9 نوفمبر 2025</p>
+                <div class="space-y-16 relative">
+                    
+                    <div class="relative pr-20 md:pr-24 fade-up delay-500 group">
+                         <div class="absolute right-1 md:right-3 top-0 w-14 h-14 md:w-16 md:h-16 timeline-icon-container rounded-full flex items-center justify-center z-10 border-4 border-gray-900/80 group-hover:scale-110 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white drop-shadow" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 rounded-[2rem] relative overflow-hidden group hover:border-pink-500/40 transition-all duration-500">
+                             <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <h3 class="font-extrabold text-2xl text-pink-100 mb-2">أول لقاء</h3>
+                            <p class="text-pink-300/90 text-base md:text-lg font-semibold">30 أكتوبر 2025</p>
+                            <p class="text-gray-300/70 text-sm mt-3 leading-relaxed">اليوم الذي بدأت فيه حكايتنا، ونبضت قلوبنا لأول مرة معاً.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="relative group transform transition-all duration-300 hover:-translate-x-2">
-                    <div class="absolute -right-[41px] top-1.5 w-5 h-5 bg-rose-500 border-4 border-rose-300 rounded-full shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-125 transition-transform duration-300"></div>
-                    <div class="glass p-5 rounded-2xl border border-rose-500/30">
-                        <h3 class="font-bold text-xl text-rose-100 mb-1">الخطوبة</h3>
-                        <p class="text-rose-200/80 text-sm">13 نوفمبر 2025</p>
+                    <div class="relative pr-20 md:pr-24 fade-up delay-700 group">
+                         <div class="absolute right-1 md:right-3 top-0 w-14 h-14 md:w-16 md:h-16 timeline-icon-container rounded-full flex items-center justify-center z-10 border-4 border-gray-900/80 group-hover:scale-110 transition-transform duration-300">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white drop-shadow" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                            </svg>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 rounded-[2rem] relative overflow-hidden group hover:border-pink-500/40 transition-all duration-500">
+                             <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <h3 class="font-extrabold text-2xl text-pink-100 mb-2">قراءة الفاتحة</h3>
+                            <p class="text-pink-300/90 text-base md:text-lg font-semibold">9 نوفمبر 2025</p>
+                            <p class="text-gray-300/70 text-sm mt-3 leading-relaxed">بارك الله لنا في خطوتنا الأولى الرسمية نحو مستقبلنا.</p>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="relative pr-20 md:pr-24 fade-up delay-700 group" style="animation-delay: 0.9s;">
+                         <div class="absolute right-1 md:right-3 top-0 w-14 h-14 md:w-16 md:h-16 timeline-icon-container rounded-full flex items-center justify-center z-10 border-4 border-gray-900/80 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_25px_rgba(236,72,153,0.7)]">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white drop-shadow" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10.5 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V2.25zm-4.5 0a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V2.25zm9 0a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V2.25zm4.5 0a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V2.25z" opacity="0.6"/>
+                                <path fill-rule="evenodd" d="M12 6a6.75 6.75 0 100 13.5a6.75 6.75 0 000-13.5zm0 1.5a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zM6 15.75A6.75 6.75 0 1112.75 9 6.75 6.75 0 016 15.75zm0 1.5a5.25 5.25 0 106.75-6.75 5.25 5.25 0 00-6.75 6.75z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 rounded-[2rem] relative overflow-hidden group hover:border-pink-500/50 transition-all duration-500 border-pink-500/20">
+                             <div class="absolute inset-0 bg-gradient-to-r from-pink-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <h3 class="font-extrabold text-2xl text-pink-50 mb-2 drop-shadow-sm">الخطوبة</h3>
+                            <p class="text-rose-300 text-base md:text-lg font-bold">13 نوفمبر 2025</p>
+                            <p class="text-pink-100/80 text-sm mt-3 leading-relaxed">أجمل يوم، حيث أعلنّا للعالم أننا لبعضنا البعض.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // Generate Floating Hearts
-        const heartsContainer = document.getElementById('hearts');
-        const heartSymbols = ['❤️', '✨', '💖', '🤍'];
-        
-        for(let i = 0; i < 20; i++) {
-            let heart = document.createElement('div');
-            heart.classList.add('heart');
+        // --- Floating Hearts Animation Script ---
+        const heartsCanvas = document.getElementById('hearts-canvas');
+        const heartSymbols = ['❤', '💖', '💗', '✨']; // Added sparkle
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
             heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            // Randomize starting position across the screen width
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; // 4 to 7 seconds
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            heartsContainer.appendChild(heart);
+            // Randomize animation duration between 6 and 12 seconds for variety
+            const duration = Math.random() * 6 + 6;
+            heart.style.animationDuration = duration + 's';
+            // Remove the heart after animation completes to prevent memory leaks
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+
+            heartsCanvas.appendChild(heart);
         }
 
-        // Precise Countdown Logic
-        const startDate = new Date(2025, 9, 30, 20, 0, 0); // Oct 30, 2025, 8:00 PM
+        // Create a new heart every 400ms
+        setInterval(createHeart, 400);
+        // Create initial batch
+        for(let i=0; i<15; i++) setTimeout(createHeart, Math.random()*3000);
 
-        function update() {
+
+        // --- Accurate Countdown Timer Script ---
+        const startDate = new Date(2025, 9, 30, 20, 0, 0); // Month is 0-indexed (9 = Oct)
+
+        function updateTimer() {
             const now = new Date();
             let diff = now - startDate;
+            if (diff < 0) diff = 0; // Future-proofing
 
-            if (diff < 0) diff = 0; // Prevent negative numbers if viewing before the date
+            // Time calculations for milliseconds
+            const MS_PER_SECOND = 1000;
+            const MS_PER_MINUTE = MS_PER_SECOND * 60;
+            const MS_PER_HOUR = MS_PER_MINUTE * 60;
 
-            // Convert milliseconds into respective units
-            let seconds = Math.floor((diff / 1000) % 60);
-            let minutes = Math.floor((diff / 1000 / 60) % 60);
-            let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            // Calculate time units
+            const seconds = Math.floor((diff % MS_PER_MINUTE) / MS_PER_SECOND);
+            const minutes = Math.floor((diff % MS_PER_HOUR) / MS_PER_MINUTE);
+            const hours = Math.floor((diff / MS_PER_HOUR) % 24);
             
-            // For precise days/months/years, we use Date objects
+            // Calculate accurate dates based on calendar
             let years = now.getFullYear() - startDate.getFullYear();
             let months = now.getMonth() - startDate.getMonth();
             let days = now.getDate() - startDate.getDate();
 
+            // Adjust for negative days/months
             if (days < 0) {
-                const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days += prevMonthDays;
+                // Get last day of previous month
+                const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonthLastDay;
                 months--;
             }
             if (months < 0) {
@@ -196,17 +255,23 @@
                 years--;
             }
 
-            // Animate only numbers that change (optional polish, currently just updating text)
-            document.getElementById("years").textContent = years;
-            document.getElementById("months").textContent = months;
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = hours;
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds;
+            // Update the DOM elements
+            document.getElementById("years").innerText = years;
+            document.getElementById("months").innerText = months;
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours
+                .toString().padStart(2, '0'); // Add leading zero for aesthetics
+            document.getElementById("minutes").innerText = minutes
+                .toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds
+                .toString().padStart(2, '0');
         }
 
-        setInterval(update, 1000);
-        update();
+        // Update every second
+        setInterval(updateTimer, 1000);
+        // Initial call to avoid 1-second delay on load
+        updateTimer();
     </script>
 </body>
 </html>
+
