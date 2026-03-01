@@ -303,6 +303,9 @@
             
             // Calculate remaining time
             const diff = now - startDate;
+            if (diff < 0) {
+    years = months = days = hours = minutes = seconds = 0;
+            }
             const totalSeconds = Math.floor(diff / 1000);
             const seconds = totalSeconds % 60;
             const minutes = Math.floor(totalSeconds / 60) % 60;
