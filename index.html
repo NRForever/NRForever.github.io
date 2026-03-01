@@ -278,47 +278,51 @@
 
 
         // --- 4. Accurate Countdown Timer Logic ---
-        const startDate = new Date('2025-10-30T20:00:00+02:00');
-
-        function updateTimer() {
+function updateTimer() {
+    const startDate = new Date('2025-10-30T20:00:00+02:00');
     const now = new Date();
+    const diff = Math.max(0, now - startDate);
 
-    if (now < startDate) {
-        document.getElementById("years").innerText = 0;
-        document.getElementById("months").innerText = 0;
-        document.getElementById("days").innerText = 0;
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("minutes").innerText = "00";
-        document.getElementById("seconds").innerText = "00";
-        return;
-    }
+    const MS_PER_SECOND = 1000;
+    const MS_PER_MINUTE = MS_PER_SECOND * 60;
+    const MS_PER_HOUR   = MS_PER_MINUTE * 60;
+    const MS_PER_DAY    = MS_PER_HOUR * 24;
 
-    // الفرق الكامل بالأيام
-    let years = now.getFullYear() - startDate.getFullYear();
-    let months = now.getMonth() - startDate.getMonth();
-    let days = now.getDate() - startDate.getDate();
-    let hours = now.getHours() - startDate.getHours();
-    let minutes = now.getMinutes() - startDate.getMinutes();
-    let seconds = now.getSeconds() - startDate.getSeconds();
+    const seconds = Math.floor(diff / MS_PER_SECOND) % 60;
+    const minutes = Math.floor(diff / MS_PER_MINUTE) % 60;
+    const hours   = Math.floor(diff / MS_PER_HOUR)   % 24;
 
-    // تصحيح القيم السالبة بشكل رياضي مباشر
-    if (seconds < 0) { seconds += 60; minutes--; }
-    if (minutes < 0) { minutes += 60; hours--; }
-    if (hours < 0) { hours += 24; days--; }
-    if (days < 0) {
-        months--;
-        const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-        days += prevMonthDays;
-    }
+    let start = new Date('2025-10-30T20:00:00+02:00');
+    let years  = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth()    - start.getMonth();
+
     if (months < 0) { months += 12; years--; }
 
-    // عرض القيم
-    document.getElementById("years").innerText = years;
-    document.getElementById("months").innerText = months;
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours.toString().padStart(2,'0');
-    document.getElementById("minutes").innerText = minutes.toString().padStart(2,'0');
-    document.getElementById("seconds").innerText = seconds.toString().padStart(2,'0');
+    let ref = new Date(start);
+    ref.setFullYear(ref.getFullYear() + years);
+    ref.setMonth(ref.getMonth() + months);
+
+    let days = Math.floor((now - ref) / MS_PER_DAY);
+
+    if (days < 0) {
+        months--;
+        if (months < 0) { months += 12; years--; }
+        ref = new Date(start);
+        ref.setFullYear(ref.getFullYear() + years);
+        ref.setMonth(ref.getMonth() + months);
+        days = Math.floor((now - ref) / MS_PER_DAY);
+    }
+
+    years  = Math.max(0, years);
+    months = Math.max(0, months);
+    days   = Math.max(0, days);
+
+    document.getElementById("years").innerText   = years;
+    document.getElementById("months").innerText  = months;
+    document.getElementById("days").innerText    = days;
+    document.getElementById("hours").innerText   = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
 }
 
 setInterval(updateTimer, 1000);
