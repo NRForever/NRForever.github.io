@@ -292,26 +292,25 @@
     const minutes = Math.floor(diff / MS_PER_MINUTE) % 60;
     const hours   = Math.floor(diff / MS_PER_HOUR)   % 24;
 
-    let start = new Date('2025-10-30T20:00:00+02:00');
-    let years  = now.getFullYear() - start.getFullYear();
-    let months = now.getMonth()    - start.getMonth();
-
+    // حساب السنوات والشهور
+    let years  = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth()    - startDate.getMonth();
     if (months < 0) { months += 12; years--; }
 
-    let ref = new Date(start);
+    // نحسب نقطة مرجعية بعد إضافة السنوات والشهور
+    let ref = new Date(startDate);
     ref.setFullYear(ref.getFullYear() + years);
     ref.setMonth(ref.getMonth() + months);
-    ref.setHours(20, 0, 0, 0);
 
+    // الأيام = إجمالي الفرق بين now والنقطة المرجعية بالأيام
     let days = Math.floor((now - ref) / MS_PER_DAY);
 
     if (days < 0) {
         months--;
         if (months < 0) { months += 12; years--; }
-        ref = new Date(start);
+        ref = new Date(startDate);
         ref.setFullYear(ref.getFullYear() + years);
         ref.setMonth(ref.getMonth() + months);
-        ref.setHours(20, 0, 0, 0);
         days = Math.floor((now - ref) / MS_PER_DAY);
     }
 
