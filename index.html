@@ -278,7 +278,7 @@
 
 
         // --- 4. Accurate Countdown Timer Logic ---
-function updateTimer() {
+       function updateTimer() {
     const startDate = new Date('2025-10-30T20:00:00+02:00');
     const now = new Date();
     const diff = Math.max(0, now - startDate);
@@ -301,6 +301,7 @@ function updateTimer() {
     let ref = new Date(start);
     ref.setFullYear(ref.getFullYear() + years);
     ref.setMonth(ref.getMonth() + months);
+    ref.setHours(20, 0, 0, 0);
 
     let days = Math.floor((now - ref) / MS_PER_DAY);
 
@@ -310,6 +311,7 @@ function updateTimer() {
         ref = new Date(start);
         ref.setFullYear(ref.getFullYear() + years);
         ref.setMonth(ref.getMonth() + months);
+        ref.setHours(20, 0, 0, 0);
         days = Math.floor((now - ref) / MS_PER_DAY);
     }
 
