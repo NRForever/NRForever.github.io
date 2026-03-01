@@ -281,11 +281,10 @@
         const startDate = new Date('2025-10-30T20:00:00+02:00');
 
         function updateTimer() {
+    consfunction updateTimer() {
     const now = new Date();
-    const diff = now - startDate;
 
-    // لو التاريخ لسه ما بدأش
-    if (diff < 0) {
+    if (now < startDate) {
         document.getElementById("years").innerText = 0;
         document.getElementById("months").innerText = 0;
         document.getElementById("days").innerText = 0;
@@ -295,36 +294,36 @@
         return;
     }
 
+    // الفرق الكامل بالأيام
     let years = now.getFullYear() - startDate.getFullYear();
     let months = now.getMonth() - startDate.getMonth();
     let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let minutes = now.getMinutes() - startDate.getMinutes();
+    let seconds = now.getSeconds() - startDate.getSeconds();
 
+    // تصحيح القيم السالبة بشكل رياضي مباشر
+    if (seconds < 0) { seconds += 60; minutes--; }
+    if (minutes < 0) { minutes += 60; hours--; }
+    if (hours < 0) { hours += 24; days--; }
     if (days < 0) {
         months--;
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
+        const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonthDays;
     }
+    if (months < 0) { months += 12; years--; }
 
-    if (months < 0) {
-        years--;
-        months += 12;
-    }
-
-    const totalSeconds = Math.floor(diff / 1000);
-    const seconds = totalSeconds % 60;
-    const minutes = Math.floor(totalSeconds / 60) % 60;
-    const hours = Math.floor(totalSeconds / 3600) % 24;
-
+    // عرض القيم
     document.getElementById("years").innerText = years;
     document.getElementById("months").innerText = months;
     document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = hours.toString().padStart(2,'0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2,'0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2,'0');
 }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
+setInterval(updateTimer, 1000);
+updateTimer();
     </script>
 
     <script data-goatcounter="https://nader-rahma.goatcounter.com/count"
